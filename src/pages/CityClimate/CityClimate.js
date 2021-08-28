@@ -3,6 +3,8 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import api, { key_weatherapi } from '../../services/api';
 import { getState } from '../../utils/getStateForCity';
+import { climateList } from '../../constants/ClimateList';
+import { IconSvg } from '../../components';
 import './cityClimate.scss';
 
 const CityClimate = (props) => {
@@ -41,7 +43,7 @@ const CityClimate = (props) => {
                     <p className="subtitle">select a city</p>
                 </aside>
                 <article>
-
+                    <IconSvg Icon={climateList[11].IconNight} />
                 </article>
             </div>
         </div>
