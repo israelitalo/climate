@@ -1,4 +1,4 @@
-export const getState = (city = 'Recife') => {
+export const getState = (city = '') => {
     switch (city) {
         case 'Dallol':
             return 'NG';
@@ -12,5 +12,7 @@ export const getState = (city = 'Recife') => {
             return 'CA';
         case 'Yakutsk':
             return 'RU';
+        default:
+            return 'Recife';
     }
 }

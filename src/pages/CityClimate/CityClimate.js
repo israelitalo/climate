@@ -12,6 +12,17 @@ const CityClimate = (props) => {
     const city = props.match.params?.city;
 
     const [climate, setClimate] = useState(null);
+    const [backgroundClassName, setBackgroundClassName] = useState('');
+    const [loading, setLoading] = useState('');
+
+    const getIcon = (current) => {
+        const itemList = climateList.find(item => item.code === current.condition.code);
+        if (current.condition.icon.indexOf('day') > -1) {
+            return itemList.IconDay;
+        } else {
+            return itemList.IconNight;
+        }
+    }
 
     useEffect(() => {
         const getClimate = async () => {
@@ -24,18 +35,30 @@ const CityClimate = (props) => {
             }
             const response = await api.getClimateCity(params);
             if (response.error) {
-                alert(response.error.message);
+                return alert(response.error.message);
             }
             setClimate(response);
+            const itemList = climateList.find(item => item.code === response.current.condition.code);
+            if (itemList) {
+                setBackgroundClassName(itemList.status);
+            }
             console.log(response);
         }
         getClimate();
-    }, []);
+    }, [city]);
 
     const history = useHistory();
 
+    if (!climate) {
+        return (
+            <div className="container-city-climate">
+                <p>Carregando...</p>
+            </div>
+        )
+    }
+
     return (
-        <div className={`container-city-climate ${'sunny'}`}>
+        <div className={`container-city-climate ${backgroundClassName}`}>
             <FaArrowLeft className="button-back" onClick={() => history.goBack()} />
             <div className="container-body">
                 <aside>
@@ -43,7 +66,11 @@ const CityClimate = (props) => {
                     <p className="subtitle">select a city</p>
                 </aside>
                 <article>
-                    <IconSvg Icon={climateList[11].IconNight} />
+                    {climate &&
+                        <IconSvg
+                            Icon={getIcon(climate.current)}
+                        />
+                    }
                 </article>
             </div>
         </div>

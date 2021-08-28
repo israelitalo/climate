@@ -1,5 +1,5 @@
 .container-city-climate{
-    background: var(--gray-500);
+    background: var(--sunny);
     height: 100vh;
     max-width: 100%;
     display: flex;
@@ -9,11 +9,23 @@
 
 .sunny{
     background: var(--sunny);
+    p{
+        color: var(--white) !important;
+    }
 }
 
 .snowy{
     background: var(--snowy);
 }
+
+.rainy{
+    background: var(--rainy);
+    p{
+        color: var(--white) !important;
+    }
+}
+
+
 
 .button-back{
     position: absolute;
@@ -47,7 +59,6 @@
 
         .subtitle{
             font: 100 1.3rem 'Urbanist', sans-serif;
-            color: var(--gray-800);
         }
     }
 
