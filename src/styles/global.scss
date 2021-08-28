@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --white: #FFF;
+    --black: #0f0f0f;
+    --sunny: #57cbdc;
+    --rainy: #616978;
+    --snowy: #dfdfdf;
+    
+    --warning: #FFC23D;
+    --danger: #dc3545;
+
+    --gray-50: #F7F8FA;
+    --gray-100: #E6E8EB;
+    --gray-150: #e9e9e9;
+    --gray-200: #AFB2B1;
+    --gray-500: #808080;
+    --gray-600: #666;
+    --gray-800: #494D4B;
+  
+    --green-500: #04D361;
+    
+    --purple-300: #9F75FF;
+    --purple-400: #9164FA; 
+    --purple-500: #8257E5;
+    --purple-800: #6F48C9;
+}
+
+body, input {
+    font: 300 2rem 'Urbanist', sans-serif;
+}
+
+button{
+    cursor: pointer;
+    font: 200 1.1rem 'Urbanist', sans-serif;
+    background-color: transparent;
+    color: var(--gray-100);
+    border: 0;
+}

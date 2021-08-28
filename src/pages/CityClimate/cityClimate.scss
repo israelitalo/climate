@@ -1,0 +1,71 @@
+.container-city-climate{
+    background: var(--gray-500);
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 9.5rem 2rem;
+}
+
+.sunny{
+    background: var(--sunny);
+}
+
+.snowy{
+    background: var(--snowy);
+}
+
+.button-back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2rem;
+    cursor: pointer;
+}
+
+.button-back:hover{
+    color: var(--gray-800);
+}
+
+.container-body{
+    width: 20rem;
+
+    aside {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            color: var(--black);
+            text-align: center;
+        }
+
+        .title{
+            font: 200 1.8rem 'Urbanist', sans-serif;
+            line-height: 1;
+        }
+
+        .subtitle{
+            font: 100 1.3rem 'Urbanist', sans-serif;
+            color: var(--gray-800);
+        }
+    }
+
+    article{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 2rem;
+
+        section{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            width: 100%;
+        }
+
+    }
+
+}
