@@ -18,6 +18,13 @@ import { WiNightFog } from 'react-icons/wi';
 import { WiFog } from 'react-icons/wi';
 import { WiRainWind } from 'react-icons/wi';
 import { WiRain } from 'react-icons/wi';
+import { WiSnow } from 'react-icons/wi';
+import { WiNightAltSnow } from 'react-icons/wi';
+import { WiDayRainMix } from 'react-icons/wi';
+import { WiNightAltRainMix } from 'react-icons/wi';
+import { WiNightSnowThunderstorm } from 'react-icons/wi';
+import { WiDaySnowThunderstorm } from 'react-icons/wi';
+import { WiStormShowers } from 'react-icons/wi';
 
 export const climateList = [
     {
@@ -208,150 +215,200 @@ export const climateList = [
         "code": 1195,
         "day": "Heavy rain",
         "night": "Heavy rain",
-        "icon": 308
+        "icon": 308,
+        "IconDay": WiRain,
+        "IconNight": WiRain
     },
     {
         "code": 1198,
         "day": "Light freezing rain",
         "night": "Light freezing rain",
-        "icon": 311
+        "icon": 311,
+        "IconDay": WiRainMix,
+        "IconNight": WiRainMix
     },
     {
         "code": 1201,
         "day": "Moderate or heavy freezing rain",
         "night": "Moderate or heavy freezing rain",
-        "icon": 314
+        "icon": 314,
+        "IconDay": WiRainMix,
+        "IconNight": WiRainMix
     },
     {
         "code": 1204,
         "day": "Light sleet",
         "night": "Light sleet",
-        "icon": 317
+        "icon": 317,
+        "IconDay": WiRainMix,
+        "IconNight": WiRainMix
     },
     {
         "code": 1207,
         "day": "Moderate or heavy sleet",
         "night": "Moderate or heavy sleet",
-        "icon": 320
+        "icon": 320,
+        "IconDay": WiRainMix,
+        "IconNight": WiRainMix
     },
     {
         "code": 1210,
         "day": "Patchy light snow",
         "night": "Patchy light snow",
-        "icon": 323
+        "icon": 323,
+        "IconDay": WiDaySnow,
+        "IconNight": WiNightAltSnowWind
     },
     {
         "code": 1213,
         "day": "Light snow",
         "night": "Light snow",
-        "icon": 326
+        "icon": 326,
+        "IconDay": WiSnow,
+        "IconNight": WiSnow
     },
     {
         "code": 1216,
         "day": "Patchy moderate snow",
         "night": "Patchy moderate snow",
-        "icon": 329
+        "icon": 329,
+        "IconDay": WiDaySnow,
+        "IconNight": WiNightAltSnow
     },
     {
         "code": 1219,
         "day": "Moderate snow",
         "night": "Moderate snow",
-        "icon": 332
+        "icon": 332,
+        "IconDay": WiSnow,
+        "IconNight": WiSnow
     },
     {
         "code": 1222,
         "day": "Patchy heavy snow",
         "night": "Patchy heavy snow",
-        "icon": 335
+        "icon": 335,
+        "IconDay": WiDaySnow,
+        "IconNight": WiNightAltSnow
     },
     {
         "code": 1225,
         "day": "Heavy snow",
         "night": "Heavy snow",
-        "icon": 338
+        "icon": 338,
+        "IconDay": WiSnow,
+        "IconNight": WiSnow
     },
     {
         "code": 1237,
         "day": "Ice pellets",
         "night": "Ice pellets",
-        "icon": 350
+        "icon": 350,
+        "IconDay": WiSnow,
+        "IconNight": WiSnow
     },
     {
         "code": 1240,
         "day": "Light rain shower",
         "night": "Light rain shower",
-        "icon": 353
+        "icon": 353,
+        "IconDay": WiDayRainMix,
+        "IconNight": WiNightAltRain
     },
     {
         "code": 1243,
         "day": "Moderate or heavy rain shower",
         "night": "Moderate or heavy rain shower",
-        "icon": 356
+        "icon": 356,
+        "IconDay": WiDayRainMix,
+        "IconNight": WiNightAltRain
     },
     {
         "code": 1246,
         "day": "Torrential rain shower",
         "night": "Torrential rain shower",
-        "icon": 359
+        "icon": 359,
+        "IconDay": WiDayRain,
+        "IconNight": WiNightAltRain
     },
     {
         "code": 1249,
         "day": "Light sleet showers",
         "night": "Light sleet showers",
-        "icon": 362
+        "icon": 362,
+        "IconDay": WiDayRainMix,
+        "IconNight": WiNightAltRainMix
     },
     {
         "code": 1252,
         "day": "Moderate or heavy sleet showers",
         "night": "Moderate or heavy sleet showers",
-        "icon": 365
+        "icon": 365,
+        "IconDay": WiDayRainMix,
+        "IconNight": WiNightAltRainMix
     },
     {
         "code": 1255,
         "day": "Light snow showers",
         "night": "Light snow showers",
-        "icon": 368
+        "icon": 368,
+        "IconDay": WiDaySnow,
+        "IconNight": WiNightAltSnow
     },
     {
         "code": 1258,
         "day": "Moderate or heavy snow showers",
         "night": "Moderate or heavy snow showers",
-        "icon": 371
+        "icon": 371,
+        "IconDay": WiDaySnow,
+        "IconNight": WiNightAltSnow
     },
     {
         "code": 1261,
         "day": "Light showers of ice pellets",
         "night": "Light showers of ice pellets",
-        "icon": 374
+        "icon": 374,
+        "IconDay": WiDaySnow,
+        "IconNight": WiNightAltSnow
     },
     {
         "code": 1264,
         "day": "Moderate or heavy showers of ice pellets",
         "night": "Moderate or heavy showers of ice pellets",
-        "icon": 377
+        "icon": 377,
+        "IconDay": WiDaySnow,
+        "IconNight": WiNightAltSnow
     },
     {
         "code": 1273,
         "day": "Patchy light rain with thunder",
         "night": "Patchy light rain with thunder",
-        "icon": 386
+        "icon": 386,
+        "IconDay": WiDayLightning,
+        "IconNight": WiNightAltLightning
     },
     {
         "code": 1276,
         "day": "Moderate or heavy rain with thunder",
         "night": "Moderate or heavy rain with thunder",
-        "icon": 389
+        "icon": 389,
+        "IconDay": WiDayLightning,
+        "IconNight": WiNightAltLightning
     },
     {
         "code": 1279,
         "day": "Patchy light snow with thunder",
         "night": "Patchy light snow with thunder",
-        "icon": 392
+        "icon": 392,
+        "IconDay": WiDaySnowThunderstorm,
+        "IconNight": WiNightSnowThunderstorm
     },
     {
         "code": 1282,
         "day": "Moderate or heavy snow with thunder",
         "night": "Moderate or heavy snow with thunder",
-        "icon": 395
+        "icon": 395,
+        "IconDay": WiStormShowers,
+        "IconNight": WiStormShowers
     }
 ]
