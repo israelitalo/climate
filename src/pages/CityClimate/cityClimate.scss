@@ -9,6 +9,7 @@
 
 .sunny{
     background: var(--sunny);
+    color: var(--white) !important;
     p{
         color: var(--white) !important;
     }
@@ -16,16 +17,16 @@
 
 .snowy{
     background: var(--snowy);
+    color: var(--black) !important;
 }
 
 .rainy{
     background: var(--rainy);
+    color: var(--white) !important;
     p{
         color: var(--white) !important;
     }
 }
-
-
 
 .button-back{
     position: absolute;
@@ -35,39 +36,18 @@
     cursor: pointer;
 }
 
-.button-back:hover{
-    color: var(--gray-800);
-}
+// .button-back:hover{
+//     color: var(--gray-800);
+// }
 
 .container-body{
     width: 20rem;
-
-    aside {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        p{
-            color: var(--black);
-            text-align: center;
-        }
-
-        .title{
-            font: 200 1.8rem 'Urbanist', sans-serif;
-            line-height: 1;
-        }
-
-        .subtitle{
-            font: 100 1.3rem 'Urbanist', sans-serif;
-        }
-    }
 
     article{
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-
         margin-top: 2rem;
 
         section{
@@ -77,6 +57,65 @@
             width: 100%;
         }
 
+    }
+
+}
+
+.aside-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p{
+        color: var(--black);
+        text-align: center;
+    }
+
+    .title{
+        font: 200 1.8rem 'Urbanist', sans-serif;
+        line-height: 1;
+    }
+
+    .subtitle{
+        font: 100 1.1rem 'Urbanist', sans-serif;
+    }
+}
+
+.container-temp-top{
+    display: flex;
+    flex-direction: row;
+    align-items: inherit;
+    margin-top: 0.5rem;
+
+    > p{
+       font-size: 6rem;
+       flex: 2
+    }
+
+    .row-min-max-temp{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        >p{
+            color: var(--gray-100) !important;
+            margin: 0 0 0 0.5rem;
+        }
+        p{
+            font-size: 0.8rem;
+        }
+    }
+
+    .temp-top-right{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        flex: 1;
+        > p {
+            font-size: 1.5rem;
+            margin-bottom: 0.7rem;
+        }
     }
 
 }

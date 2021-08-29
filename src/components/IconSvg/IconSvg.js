@@ -5,8 +5,8 @@ const IconSvg = (props) => {
     const {
         Icon,
         className = 'iconWhite',
-        width = '10rem',
-        height = '10rem',
+        width = '8rem',
+        height = '8rem',
         color,
         style = {
             color: color,

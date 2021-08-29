@@ -32,7 +32,7 @@ const CityClimate = (props) => {
                 aqi: 'no',
                 alerts: 'no',
                 key: key_weatherapi
-            }
+            };
             const response = await api.getClimateCity(params);
             if (response.error) {
                 return alert(response.error.message);
@@ -59,18 +59,33 @@ const CityClimate = (props) => {
 
     return (
         <div className={`container-city-climate ${backgroundClassName}`}>
-            <FaArrowLeft className="button-back" onClick={() => history.goBack()} />
+            <FaArrowLeft
+                className={`button-back ${backgroundClassName}`}
+                onClick={() => history.goBack()}
+            />
             <div className="container-body">
-                <aside>
+                <aside className="aside-top">
                     <p className="title">{city?.toUpperCase() || 'WEATHER'}</p>
-                    <p className="subtitle">select a city</p>
+                    <p className="subtitle">{climate.current?.condition?.text || 'not informed'}</p>
+                    <section className="container-temp-top">
+                        <p>{climate.current?.temp_c?.toFixed() || '--'}</p>
+                        <div className="temp-top-right">
+                            <p>°C</p>
+                            <div className="row-min-max-temp">
+                                <p>↑</p>
+                                <p>{climate.forecast?.forecastday[0]?.day?.maxtemp_c?.toFixed() || '-'}°</p>
+                            </div>
+                            <div className="row-min-max-temp">
+                                <p>↓</p>
+                                <p>{climate.forecast?.forecastday[0]?.day?.mintemp_c?.toFixed() || '-'}°</p>
+                            </div>
+                        </div>
+                    </section>
+                    <IconSvg
+                        Icon={getIcon(climate.current)}
+                    />
                 </aside>
                 <article>
-                    {climate &&
-                        <IconSvg
-                            Icon={getIcon(climate.current)}
-                        />
-                    }
                 </article>
             </div>
         </div>
