@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import api, { key_weatherapi } from '../../services/api';
 import { getState } from '../../utils/getStateForCity';
 import { climateList } from '../../constants/ClimateList';
-import { IconSvg } from '../../components';
+import { HourTemp, IconSvg } from '../../components';
 import './cityClimate.scss';
 import { WiSnowWind } from 'react-icons/wi';
 
@@ -69,16 +69,16 @@ const CityClimate = (props) => {
                     <p className="title">{city?.toUpperCase() || 'WEATHER'}</p>
                     <p className="subtitle">{climate.current?.condition?.text || 'not informed'}</p>
                     <section className="container-temp-top">
-                        <p>{climate.current?.temp_c?.toFixed() || '--'}</p>
+                        <p>{climate.current?.temp_c?.toFixed() || 'N/A'}</p>
                         <div className="temp-top-right">
                             <p>°C</p>
                             <div className="row-min-max-temp">
                                 <p>↑</p>
-                                <p>{climate.forecast?.forecastday[0]?.day?.maxtemp_c?.toFixed() || '-'}°</p>
+                                <p>{climate.forecast?.forecastday[0]?.day?.maxtemp_c?.toFixed() || 'N/A'}°</p>
                             </div>
                             <div className="row-min-max-temp">
                                 <p>↓</p>
-                                <p>{climate.forecast?.forecastday[0]?.day?.mintemp_c?.toFixed() || '-'}°</p>
+                                <p>{climate.forecast?.forecastday[0]?.day?.mintemp_c?.toFixed() || 'N/A'}°</p>
                             </div>
                         </div>
                     </section>
@@ -87,26 +87,60 @@ const CityClimate = (props) => {
                     />
                 </aside>
                 <article>
-                    <section>
-                        <div className="container-temp-hour">
-                            <p>dawn</p>
-                            <IconSvg Icon={WiSnowWind} width={60} height={45} />
-                            <p className="temp-hour">13 °C</p>
+                    <section className="temp-hour-container-main">
+                        <HourTemp
+                            title="dawn"
+                            Icon={WiSnowWind}
+                            temp="13"
+                        />
+                        <HourTemp
+                            title="morgning"
+                            Icon={WiSnowWind}
+                            temp="13"
+                        />
+                        <HourTemp
+                            title="afternoon"
+                            Icon={WiSnowWind}
+                            temp="13"
+                        />
+                        <HourTemp
+                            title="night"
+                            Icon={WiSnowWind}
+                            temp="13"
+                        />
+                    </section>
+                    <section className="astro-container">
+                        <div className="astro-column">
+                            <div className="astro-column-content">
+                                <div className="astro-content-children">
+                                    <p>wind speed</p>
+                                    <p>5.1 m/s</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="container-temp-hour">
-                            <p>morgning</p>
-                            <IconSvg Icon={WiSnowWind} width={60} height={45} />
-                            <p className="temp-hour">13 °C</p>
+                        <div className="astro-column">
+                            <div className="after-test astro-column-content">
+                                <div className="astro-content-children">
+                                    <p>sunrise</p>
+                                    <p>5:14 AM</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="container-temp-hour">
-                            <p>afternoon</p>
-                            <IconSvg Icon={WiSnowWind} width={60} height={45} />
-                            <p className="temp-hour">13 °C</p>
+                        <div className="astro-column">
+                            <div className="after-test astro-column-content">
+                                <div className="astro-content-children">
+                                    <p>sunset</p>
+                                    <p>5:14 AM</p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="container-temp-hour">
-                            <p>night</p>
-                            <IconSvg Icon={WiSnowWind} width={60} height={45} />
-                            <p className="temp-hour">13 °C</p>
+                        <div className="astro-column">
+                            <div className="after-test astro-column-content">
+                                <div className="astro-content-children">
+                                    <p>humidity</p>
+                                    <p>52%</p>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </article>
