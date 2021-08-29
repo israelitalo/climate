@@ -4,15 +4,24 @@ import { useHistory } from 'react-router-dom';
 import api, { key_weatherapi } from '../../services/api';
 import { getState } from '../../utils/getStateForCity';
 import { climateList } from '../../constants/ClimateList';
-import { HourTemp, IconSvg } from '../../components';
+import { AstroInformation, HourTemp, IconSvg } from '../../components';
 import './cityClimate.scss';
 import { WiSnowWind } from 'react-icons/wi';
+import { KmhToMts } from '../../utils/convertKmHToMtS';
 
 const CityClimate = (props) => {
 
     const city = props.match.params?.city;
 
+    const initialAstro = {
+        wind: null,
+        sunrise: null,
+        sunset: null,
+        humidity: null
+    };
+
     const [climate, setClimate] = useState(null);
+    const [astroValues, setAstro] = useState({ ...initialAstro });
     const [backgroundClassName, setBackgroundClassName] = useState('');
     const [loading, setLoading] = useState('');
 
@@ -34,15 +43,33 @@ const CityClimate = (props) => {
                 alerts: 'no',
                 key: key_weatherapi
             };
+
             const response = await api.getClimateCity(params);
+
             if (response.error) {
                 return alert(response.error.message);
             }
+
+            const { astro, hour } = response.forecast?.forecastday[0];
+
+            if (!astro) {
+                setAstro({ ...initialAstro });
+            } else {
+                setAstro({
+                    wind: `${KmhToMts(Number(response.current?.wind_kph))}m/s`,
+                    sunrise: astro.sunrise,
+                    sunset: astro.sunset,
+                    humidity: `${response.current?.humidity}%`
+                });
+            }
+
             setClimate(response);
-            const itemList = climateList.find(item => item.code === response.current.condition.code);
+
+            const itemList = climateList.find(item => item.code === response.current?.condition?.code);
             if (itemList) {
                 setBackgroundClassName(itemList.status);
             }
+            
             console.log(response);
         }
         getClimate();
@@ -109,40 +136,7 @@ const CityClimate = (props) => {
                             temp="13"
                         />
                     </section>
-                    <section className="astro-container">
-                        <div className="astro-column">
-                            <div className="astro-column-content">
-                                <div className="astro-content-children">
-                                    <p>wind speed</p>
-                                    <p>5.1 m/s</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="astro-column">
-                            <div className="after-test astro-column-content">
-                                <div className="astro-content-children">
-                                    <p>sunrise</p>
-                                    <p>5:14 AM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="astro-column">
-                            <div className="after-test astro-column-content">
-                                <div className="astro-content-children">
-                                    <p>sunset</p>
-                                    <p>5:14 AM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="astro-column">
-                            <div className="after-test astro-column-content">
-                                <div className="astro-content-children">
-                                    <p>humidity</p>
-                                    <p>52%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <AstroInformation data={astroValues} />
                 </article>
             </div>
         </div>
