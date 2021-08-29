@@ -1,0 +1,37 @@
+.container-temp-top{
+    display: flex;
+    flex-direction: row;
+    align-items: inherit;
+    margin-top: 0.5rem;
+
+    > p{
+       font-size: 6rem;
+       flex: 2
+    }
+
+    .row-min-max-temp{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        >p{
+            margin: 0 0 0 0.5rem;
+        }
+        p{
+            font-size: 0.8rem;
+        }
+    }
+
+    .temp-top-right{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        flex: 1;
+        > p {
+            font-size: 1.5rem;
+            margin-bottom: 0.7rem;
+        }
+    }
+
+}

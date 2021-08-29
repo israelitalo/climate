@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import api, { key_weatherapi } from '../../services/api';
 import { getState } from '../../utils/getStateForCity';
 import { climateList } from '../../constants/ClimateList';
-import { AstroInformation, HourTemp, IconSvg } from '../../components';
+import { AstroInformation, HourTempAll, IconSvg, TempHome } from '../../components';
 import './cityClimate.scss';
-import { WiCloud } from 'react-icons/wi';
+import { WiCloud, WiThermometer } from 'react-icons/wi';
 import { KmhToMts } from '../../utils/convertKmHToMtS';
 import { toFixedTemp } from '../../utils/toFixedTemp';
 import { useStatusColorContext } from '../../hooks/useStatusColor';
@@ -34,7 +34,6 @@ const CityClimate = (props) => {
     const [climate, setClimate] = useState(null);
     const [astroValues, setAstro] = useState({ ...initialAstro });
     const [hoursValues, setHours] = useState({ ...initialHours });
-    const [loading, setLoading] = useState('');
 
     const getIcon = (current) => {
         const itemList = climateList.find(item => item.code === current?.condition?.code);
@@ -130,6 +129,9 @@ const CityClimate = (props) => {
     if (!climate) {
         return (
             <div className="container-city-climate">
+                <IconSvg
+                    Icon={WiThermometer}
+                />
                 <p className="textLoading">Loading...</p>
             </div>
         )
@@ -145,50 +147,14 @@ const CityClimate = (props) => {
                 <aside className="aside-top">
                     <p className="title">{city?.toUpperCase() || 'WEATHER'}</p>
                     <p className="subtitle">{climate.current?.condition?.text || 'not informed'}</p>
-                    <section className="container-temp-top">
-                        <p>{toFixedTemp(climate.current?.temp_c) || 'N/A'}</p>
-                        <div className="temp-top-right">
-                            <p>°C</p>
-                            <div className="row-min-max-temp">
-                                <p className={statusColor == 'snowy' ? 'textBlack' : 'textWithe'}>↑</p>
-                                <p className={statusColor == 'snowy' ? 'textBlack' : 'textWithe'}>
-                                    {toFixedTemp(climate.forecast?.forecastday[0]?.day?.maxtemp_c) || 'N/A'}°
-                                </p>
-                            </div>
-                            <div className="row-min-max-temp">
-                                <p className={statusColor == 'snowy' ? 'textBlack' : 'textWithe'}>↓</p>
-                                <p className={statusColor == 'snowy' ? 'textBlack' : 'textWithe'}>
-                                    {toFixedTemp(climate.forecast?.forecastday[0]?.day?.mintemp_c) || 'N/A'}°
-                                </p>
-                            </div>
-                        </div>
-                    </section>
+                    <TempHome data={climate} />
                     <IconSvg
                         Icon={getIcon(climate.current)}
                     />
                 </aside>
                 <article>
                     <section className="temp-hour-container-main">
-                        <HourTemp
-                            title={hoursValues.dawn?.title}
-                            Icon={hoursValues.dawn?.Icon}
-                            temp={hoursValues.dawn?.temp}
-                        />
-                        <HourTemp
-                            title={hoursValues.morgning?.title}
-                            Icon={hoursValues.morgning?.Icon}
-                            temp={hoursValues.morgning?.temp}
-                        />
-                        <HourTemp
-                            title={hoursValues.afternoon?.title}
-                            Icon={hoursValues.afternoon?.Icon}
-                            temp={hoursValues.afternoon?.temp}
-                        />
-                        <HourTemp
-                            title={hoursValues.night?.title}
-                            Icon={hoursValues.night?.Icon}
-                            temp={hoursValues.night?.temp}
-                        />
+                        <HourTempAll data={hoursValues} />
                     </section>
                     <AstroInformation data={astroValues} />
                 </article>
