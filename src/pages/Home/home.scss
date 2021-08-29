@@ -28,14 +28,7 @@
                 font: 100 1.3rem 'Urbanist', sans-serif;
                 color: var(--gray-200);
             }
-    
-            .earth-logo {
-                width: 11vmin;
-                height: 11vmin;
-                pointer-events: none;
-                color: var(--gray-100);
-                margin-top: 1.5rem;
-            }
+
         }
 
         article{
@@ -58,6 +51,14 @@
     }
 }
 
+.earth-logo {
+    width: 13vmin;
+    height: 13vmin;
+    pointer-events: none;
+    color: var(--gray-100);
+    margin-top: 1.5rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .earth-logo {
       animation: earth-logo-spin infinite 20s linear;
@@ -70,5 +71,15 @@
     }
     to {
       transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 40rem) {
+    .earth-logo {
+        width: 35vmin;
+        height: 35vmin;
+    }
+    .container-home {
+        padding: 8rem 0.5rem;
     }
 }
