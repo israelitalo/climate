@@ -1,10 +1,26 @@
 .container-city-climate{
-    background: var(--sunny);
-    height: 100vh;
+    background: var(--black);
+    min-height: 100vh;
     max-width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 8rem 2rem;
+
+}
+
+.textLoading {
+    color: var(--gray-100);
+    font-size: 2.5rem;
+}
+
+@media (max-width: 40rem) {
+    .container-city-climate{
+        padding: 7rem 0.5rem;
+    }
+    .textLoading{
+        font-size: 1rem;
+    }
 }
 
 .sunny{
@@ -18,6 +34,9 @@
 .snowy{
     background: var(--snowy);
     color: var(--black) !important;
+    p*{
+        color: var(--black) !important;
+    }
 }
 
 .rainy{
@@ -34,11 +53,8 @@
     left: 0;
     margin: 2rem;
     cursor: pointer;
+    height: 1.5rem;
 }
-
-// .button-back:hover{
-//     color: var(--gray-800);
-// }
 
 .container-body{
     width: 20rem;
@@ -74,6 +90,14 @@
     }
 }
 
+.textBlack{
+    color: var(--black);
+}
+
+.textWithe{
+    color: var(--gray-100);
+}
+
 .container-temp-top{
     display: flex;
     flex-direction: row;
@@ -91,7 +115,6 @@
         width: 100%;
 
         >p{
-            color: var(--gray-100) !important;
             margin: 0 0 0 0.5rem;
         }
         p{

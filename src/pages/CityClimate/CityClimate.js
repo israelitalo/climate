@@ -6,12 +6,16 @@ import { getState } from '../../utils/getStateForCity';
 import { climateList } from '../../constants/ClimateList';
 import { AstroInformation, HourTemp, IconSvg } from '../../components';
 import './cityClimate.scss';
-import { WiSnowWind } from 'react-icons/wi';
+import { WiCloud } from 'react-icons/wi';
 import { KmhToMts } from '../../utils/convertKmHToMtS';
+import { toFixedTemp } from '../../utils/toFixedTemp';
+import { useStatusColorContext } from '../../hooks/useStatusColor';
 
 const CityClimate = (props) => {
 
     const city = props.match.params?.city;
+
+    const { statusColor, setStatusColor } = useStatusColorContext();
 
     const initialAstro = {
         wind: null,
@@ -20,18 +24,30 @@ const CityClimate = (props) => {
         humidity: null
     };
 
+    const initialHours = {
+        dawn: { title: 'dawn' },
+        morgning: { title: 'morgning' },
+        afternoon: { title: 'afternoon' },
+        night: { title: 'night' }
+    }
+
     const [climate, setClimate] = useState(null);
     const [astroValues, setAstro] = useState({ ...initialAstro });
-    const [backgroundClassName, setBackgroundClassName] = useState('');
+    const [hoursValues, setHours] = useState({ ...initialHours });
     const [loading, setLoading] = useState('');
 
     const getIcon = (current) => {
-        const itemList = climateList.find(item => item.code === current.condition.code);
+        const itemList = climateList.find(item => item.code === current?.condition?.code);
+
+        if (!itemList) {
+            return WiCloud;
+        }
+
         if (current.condition.icon.indexOf('day') > -1) {
             return itemList.IconDay;
-        } else {
-            return itemList.IconNight;
         }
+
+        return itemList.IconNight;
     }
 
     useEffect(() => {
@@ -52,6 +68,38 @@ const CityClimate = (props) => {
 
             const { astro, hour } = response.forecast?.forecastday[0];
 
+            if (!hour || hour?.length < 1) {
+                setHours({ ...initialHours });
+            } else {
+                const dawn = {
+                    ...initialHours.dawn,
+                    Icon: getIcon(hour[3]),
+                    temp: toFixedTemp(hour[3]?.temp_c)
+                };
+                const morgning = {
+                    ...initialHours.morgning,
+                    Icon: getIcon(hour[9]),
+                    temp: toFixedTemp(hour[9]?.temp_c)
+                };
+                const afternoon = {
+                    ...initialHours.afternoon,
+                    Icon: getIcon(hour[15]),
+                    temp: toFixedTemp(hour[15]?.temp_c)
+                };
+                const night = {
+                    ...initialHours.night,
+                    Icon: getIcon(hour[21]),
+                    temp: toFixedTemp(hour[21]?.temp_c)
+                };
+
+                setHours({
+                    dawn,
+                    morgning,
+                    afternoon,
+                    night
+                });
+            }
+
             if (!astro) {
                 setAstro({ ...initialAstro });
             } else {
@@ -63,13 +111,15 @@ const CityClimate = (props) => {
                 });
             }
 
+            const itemList = climateList.find(item => item.code === response.current?.condition?.code);
+
+            if (itemList) {
+                setStatusColor(itemList.status);
+            }
+
             setClimate(response);
 
-            const itemList = climateList.find(item => item.code === response.current?.condition?.code);
-            if (itemList) {
-                setBackgroundClassName(itemList.status);
-            }
-            
+
             console.log(response);
         }
         getClimate();
@@ -80,15 +130,15 @@ const CityClimate = (props) => {
     if (!climate) {
         return (
             <div className="container-city-climate">
-                <p>Carregando...</p>
+                <p className="textLoading">Loading...</p>
             </div>
         )
     }
 
     return (
-        <div className={`container-city-climate ${backgroundClassName}`}>
+        <div className={`container-city-climate ${statusColor}`}>
             <FaArrowLeft
-                className={`button-back ${backgroundClassName}`}
+                className={`button-back ${statusColor}`}
                 onClick={() => history.goBack()}
             />
             <div className="container-body">
@@ -96,16 +146,20 @@ const CityClimate = (props) => {
                     <p className="title">{city?.toUpperCase() || 'WEATHER'}</p>
                     <p className="subtitle">{climate.current?.condition?.text || 'not informed'}</p>
                     <section className="container-temp-top">
-                        <p>{climate.current?.temp_c?.toFixed() || 'N/A'}</p>
+                        <p>{toFixedTemp(climate.current?.temp_c) || 'N/A'}</p>
                         <div className="temp-top-right">
                             <p>°C</p>
                             <div className="row-min-max-temp">
-                                <p>↑</p>
-                                <p>{climate.forecast?.forecastday[0]?.day?.maxtemp_c?.toFixed() || 'N/A'}°</p>
+                                <p className={statusColor == 'snowy' ? 'textBlack' : 'textWithe'}>↑</p>
+                                <p className={statusColor == 'snowy' ? 'textBlack' : 'textWithe'}>
+                                    {toFixedTemp(climate.forecast?.forecastday[0]?.day?.maxtemp_c) || 'N/A'}°
+                                </p>
                             </div>
                             <div className="row-min-max-temp">
-                                <p>↓</p>
-                                <p>{climate.forecast?.forecastday[0]?.day?.mintemp_c?.toFixed() || 'N/A'}°</p>
+                                <p className={statusColor == 'snowy' ? 'textBlack' : 'textWithe'}>↓</p>
+                                <p className={statusColor == 'snowy' ? 'textBlack' : 'textWithe'}>
+                                    {toFixedTemp(climate.forecast?.forecastday[0]?.day?.mintemp_c) || 'N/A'}°
+                                </p>
                             </div>
                         </div>
                     </section>
@@ -116,24 +170,24 @@ const CityClimate = (props) => {
                 <article>
                     <section className="temp-hour-container-main">
                         <HourTemp
-                            title="dawn"
-                            Icon={WiSnowWind}
-                            temp="13"
+                            title={hoursValues.dawn?.title}
+                            Icon={hoursValues.dawn?.Icon}
+                            temp={hoursValues.dawn?.temp}
                         />
                         <HourTemp
-                            title="morgning"
-                            Icon={WiSnowWind}
-                            temp="13"
+                            title={hoursValues.morgning?.title}
+                            Icon={hoursValues.morgning?.Icon}
+                            temp={hoursValues.morgning?.temp}
                         />
                         <HourTemp
-                            title="afternoon"
-                            Icon={WiSnowWind}
-                            temp="13"
+                            title={hoursValues.afternoon?.title}
+                            Icon={hoursValues.afternoon?.Icon}
+                            temp={hoursValues.afternoon?.temp}
                         />
                         <HourTemp
-                            title="night"
-                            Icon={WiSnowWind}
-                            temp="13"
+                            title={hoursValues.night?.title}
+                            Icon={hoursValues.night?.Icon}
+                            temp={hoursValues.night?.temp}
                         />
                     </section>
                     <AstroInformation data={astroValues} />

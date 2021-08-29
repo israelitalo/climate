@@ -1,8 +1,6 @@
 export const key_weatherapi = '67eb423cc7e645b4a25154514212708';
-export const key_openweathermap = 'b291ca0e2759b4416962eaee53964f9f';
 
 export const baseUrlWeatherapi = 'https://api.weatherapi.com/v1/forecast.json';
-export const baseUrlOpenweathermap = 'http://api.openweathermap.org/data/2.5/weather';
 
 const request = async (method, params) => {
     method = method.toLowerCase();
