@@ -6,6 +6,7 @@ import { getState } from '../../utils/getStateForCity';
 import { climateList } from '../../constants/ClimateList';
 import { IconSvg } from '../../components';
 import './cityClimate.scss';
+import { WiSnowWind } from 'react-icons/wi';
 
 const CityClimate = (props) => {
 
@@ -86,6 +87,28 @@ const CityClimate = (props) => {
                     />
                 </aside>
                 <article>
+                    <section>
+                        <div className="container-temp-hour">
+                            <p>dawn</p>
+                            <IconSvg Icon={WiSnowWind} width={60} height={45} />
+                            <p className="temp-hour">13 °C</p>
+                        </div>
+                        <div className="container-temp-hour">
+                            <p>morgning</p>
+                            <IconSvg Icon={WiSnowWind} width={60} height={45} />
+                            <p className="temp-hour">13 °C</p>
+                        </div>
+                        <div className="container-temp-hour">
+                            <p>afternoon</p>
+                            <IconSvg Icon={WiSnowWind} width={60} height={45} />
+                            <p className="temp-hour">13 °C</p>
+                        </div>
+                        <div className="container-temp-hour">
+                            <p>night</p>
+                            <IconSvg Icon={WiSnowWind} width={60} height={45} />
+                            <p className="temp-hour">13 °C</p>
+                        </div>
+                    </section>
                 </article>
             </div>
         </div>

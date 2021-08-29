@@ -4,7 +4,7 @@
     max-width: 100%;
     display: flex;
     justify-content: center;
-    padding: 9.5rem 2rem;
+    padding: 8rem 2rem;
 }
 
 .sunny{
@@ -44,17 +44,28 @@
     width: 20rem;
 
     article{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
         margin-top: 2rem;
 
         section{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
 
-            width: 100%;
+            .container-temp-hour{
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            
+                p {
+                    font-size: 0.8rem;
+                }
+
+                .temp-hour{
+                    margin-top: 0.3rem;
+                }
+                
+            }
         }
 
     }
