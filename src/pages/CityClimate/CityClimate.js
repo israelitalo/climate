@@ -118,8 +118,7 @@ const CityClimate = (props) => {
 
             setClimate(response);
 
-
-            console.log(response);
+            //console.log(response);
         }
         getClimate();
     }, [city]);
